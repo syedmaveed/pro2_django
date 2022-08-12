@@ -1,3 +1,14 @@
-from django.shortcuts import render
+#from django.shortcuts import render
 
 # Create your views here.
+#classBased Views
+
+from django.views.generic import ListView
+from .models import Post
+
+class HomePage(ListView):
+    http_method_names =["get"]
+    template_name="feed/homepage.html"
+    model=Post
+    context_object_name="posts"
+    Queryset=Post.objects.all().order_by('-id')[0:30]
